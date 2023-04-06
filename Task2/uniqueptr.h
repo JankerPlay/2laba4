@@ -1,5 +1,5 @@
-#ifndef UNIQUE_PTR_H
-#define UNIQUE_PTR_H
+#ifndef UNIQUEPTR_H
+#define UNIQUEPTR_H
 #include "cfunc.cpp"
 class Del {
 public:
@@ -61,8 +61,8 @@ void unique_ptr::reset() {
 }
 
 unique_ptr make_unique(const char* str) {
-    char* ptr = new char[Strlen(str) + 1];
-    Strcpy(ptr, str);
+    char* ptr = new char[my_strlen(str) + 1];
+    my_strcpy(ptr, str);
     return unique_ptr(ptr);
 }
 

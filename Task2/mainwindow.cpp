@@ -21,7 +21,7 @@ void MainWindow::on_pushButton_clicked()
     const char* s1 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
     char* s2 = new char[n + 1];
-    Memcpy(s2, s1, n);
+    my_memcpy(s2, s1, n);
     s2[n] = '\0';
     ui->textEdit_3->setText(QString::fromUtf8(s2));
     delete[] s2;
@@ -35,7 +35,7 @@ void MainWindow::on_pushButton_2_clicked()
     const char* s1 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
     char* s2 = new char[n + 1];
-    Memmove(s2, s1, n);
+    my_memmove(s2, s1, n);
     s2[n] = '\0';
     ui->textEdit_3->setText(QString::fromUtf8(s2));
     delete[] s2;
@@ -49,7 +49,7 @@ void MainWindow::on_pushButton_3_clicked()
     const char* s1 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
     char* s2 = new char[n + 1];
-    Strcpy(s2, s1);
+    my_strcpy(s2, s1);
     ui->textEdit_3->setText(QString::fromUtf8(s2));
     delete[] s2;
 }
@@ -62,7 +62,7 @@ void MainWindow::on_pushButton_4_clicked()
     const char* s1 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
     char* s2 = new char[n + 1];
-    Strncpy(s2, s1, n);
+    my_strncpy(s2, s1, n);
     s2[n] = '\0';
     ui->textEdit_3->setText(QString::fromUtf8(s2));
     delete[] s2;
@@ -76,9 +76,9 @@ void MainWindow::on_pushButton_5_clicked()
     const char* s1 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
     char* s2 = new char[n + qwe.length() + 1];
-    Strcpy(s2, s1);
+    my_strcpy(s2, s1);
     s2[qwe.length()] = '\0';
-    Strcat(s2, s1);
+    my_strcat(s2, s1);
     ui->textEdit_3->setText(QString::fromUtf8(s2));
     delete[] s2;
 }
@@ -91,7 +91,7 @@ void MainWindow::on_pushButton_6_clicked()
     const char* s1 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
     char* s2 = new char[n + 1];
-    Strncat(s2, s1, n);
+    my_strncat(s2, s1, n);
     ui->textEdit_3->setText(QString::fromUtf8(s2));
     delete[] s2;
 }
@@ -106,7 +106,7 @@ void MainWindow::on_pushButton_7_clicked()
     bytes = qwe.toLocal8Bit();
     const char* s2 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
-    if(std::memcmp(s1,s2,n))
+    if(my_memcmp(s1,s2,n))
     {
        ui->textEdit_3->setText("Равны");
     }
@@ -124,7 +124,7 @@ void MainWindow::on_pushButton_8_clicked()
     const char* s1 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
     char* s2 = new char[n + 1];
-    Strncpy(s2, s1, n);
+    my_strncpy(s2, s1, n);
     s2[n] = '\0';
     ui->textEdit_3->setText(QString::fromUtf8(s2));
     delete[] s2;
@@ -140,7 +140,7 @@ void MainWindow::on_pushButton_9_clicked()
     bytes = qwe.toLocal8Bit();
     const char* s2 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
-    int res = Strcoll(s1, s2, n);
+    int res = my_strcoll(s1, s2, n);
     if(res < 0)
     {
         ui->textEdit_3->setText("меньше");
@@ -163,7 +163,7 @@ void MainWindow::on_pushButton_10_clicked()
     const char* s1 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
     char* s2 = new char[n + 1];
-    Strncpy(s2, s1, n);
+    my_strncpy(s2, s1, n);
     s2[n] = '\0';
     if (std::strncmp(s1, s2, n) == 0) {
         ui->textEdit_3->setText("Строки совпадают");
@@ -181,7 +181,7 @@ void MainWindow::on_pushButton_11_clicked()
     const char* s1 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
     char* s2 = new char[n * 2 + 1];
-    size_t len = Strxfrm(s2, s1, n * 2);
+    size_t len = my_strxfrm(s2, s1, n * 2);
     s2[len] = '\0';
     ui->textEdit_3->setText(QString::fromUtf8(s2));
     delete[] s2;
@@ -195,13 +195,13 @@ void MainWindow::on_pushButton_12_clicked()
     const char* s1 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
     char* s2 = new char[n + 1];
-    Memcpy(s2, s1, n);
+    my_memcpy(s2, s1, n);
     s2[n] = '\0';
-    char* token = Strtok(s2, " ");
+    char* token = my_strtok(s2, " ");
     QString result;
     while (token != nullptr) {
         result += QString::fromUtf8(token) + " ";
-        token = Strtok(nullptr, " ");
+        token = my_strtok(nullptr, " ");
     }
     ui->textEdit_3->setText(result);
     delete[] s2;
@@ -215,8 +215,8 @@ void MainWindow::on_pushButton_13_clicked()
     const char* s1 = bytes.constData();
     int n = ui->lineEdit->text().toInt();
     char* s2 = new char[n + 1];
-    Memset(s2, 0, n);
-    Memcpy(s2, s1, n);
+    my_memset(s2, 0, n);
+    my_memcpy(s2, s1, n);
     s2[n] = '\0';
     ui->textEdit_3->setText(QString::fromUtf8(s2));
     delete[] s2;
@@ -226,7 +226,7 @@ void MainWindow::on_pushButton_13_clicked()
 void MainWindow::on_pushButton_14_clicked()
 {
      int n = ui->lineEdit->text().toInt();
-      ui->textEdit_3->setText(QString::fromUtf8(Strerror(n)));
+      ui->textEdit_3->setText(QString::fromUtf8(my_strerror(n)));
 }
 
 
@@ -235,6 +235,5 @@ void MainWindow::on_pushButton_15_clicked()
     QString qwe = ui->textEdit->toPlainText();
     QByteArray bytes = qwe.toLocal8Bit();
     const char* s1 = bytes.constData();
-      ui->textEdit_3->setText(QString::number(Strlen(s1)));
+      ui->textEdit_3->setText(QString::number(my_strlen(s1)));
 }
-

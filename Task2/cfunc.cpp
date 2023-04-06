@@ -2,7 +2,7 @@
 #include <locale.h>
 #include <ctype.h>
 #include <stdio.h>
-void* Memcpy(void* str1, const void* str2, size_t n) {
+void* my_memcpy(void* str1, const void* str2, size_t n) {
     char* dst = (char*)str1;
     char* src = (char*)str2;
     for (int i = 0; i < n; i++) {
@@ -10,7 +10,7 @@ void* Memcpy(void* str1, const void* str2, size_t n) {
     }
     return dst;
 }
-void* Memmove(void* str1, const void* str2, size_t n)
+void* my_memmove(void* str1, const void* str2, size_t n)
 {
     char* dst = (char*)str1;
     char* src = (char*)str2;
@@ -25,7 +25,7 @@ void* Memmove(void* str1, const void* str2, size_t n)
     delete[] tmp;
     return dst;
 }
-char* Strcpy(char* str1, const char* str2)
+char* my_strcpy(char* str1, const char* str2)
 {
     char* dst = str1;
     while (*str2 != '\0')
@@ -35,7 +35,7 @@ char* Strcpy(char* str1, const char* str2)
     *dst = '\0';
     return str1;
 }
-char* Strncpy(char* str1, const char* str2, size_t n)
+char* my_strncpy(char* str1, const char* str2, size_t n)
 {
     if (str2 == nullptr)
     {
@@ -49,7 +49,7 @@ char* Strncpy(char* str1, const char* str2, size_t n)
     *dst = '\0';
     return str1;
 }
-char* Strcat(char* str1, const char* str2)
+char* my_strcat(char* str1, const char* str2)
 {
     char* dst = str1;
     while (*dst != '\0')
@@ -64,7 +64,7 @@ char* Strcat(char* str1, const char* str2)
     *dst = '\0';
     return str1;
 }
-char* Strncat(char* str1, const char* str2, size_t n)
+char* my_strncat(char* str1, const char* str2, size_t n)
 {
     char* dst = str1;
     while (*dst != '\0')
@@ -78,7 +78,7 @@ char* Strncat(char* str1, const char* str2, size_t n)
     *dst = '\0';
     return str1;
 }
-int Memcmp(const void* str1, const void* str2, size_t n)
+int my_memcmp(const void* str1, const void* str2, size_t n)
 {
     char* s1 = (char*)str1;
     char* s2 = (char*)str2;
@@ -95,7 +95,7 @@ int Memcmp(const void* str1, const void* str2, size_t n)
     }
     return 0;
 }
-int Strcmp(const char* str1, const char* str2)
+int my_strcmp(const char* str1, const char* str2)
 {
     char* s1 = (char*)str1;
     char* s2 = (char*)str2;
@@ -112,7 +112,7 @@ int Strcmp(const char* str1, const char* str2)
     }
     return 0;
 }
-size_t Strlen(const char* s)
+size_t my_strlen(const char* s)
 {
     size_t len = 0;
     while (*s != '\0')
@@ -122,7 +122,7 @@ size_t Strlen(const char* s)
     }
     return len;
 }
-int Strncmp(const char* str1, const char* str2, size_t n)
+int my_strncmp(const char* str1, const char* str2, size_t n)
 {
     setlocale(LC_COLLATE, "C");
     char* s1 = (char*)str1;
@@ -140,7 +140,7 @@ int Strncmp(const char* str1, const char* str2, size_t n)
     }
     return 0;
 }
-int Strcoll(const char* str1, const char* str2, size_t n)
+int my_strcoll(const char* str1, const char* str2, size_t n)
 {
     const unsigned char* s1 = (const unsigned char*)str1;
     const unsigned char* s2 = (const unsigned char*)str2;
@@ -164,10 +164,10 @@ int Strcoll(const char* str1, const char* str2, size_t n)
     setlocale(LC_COLLATE, "C");
     return result;
 }
-size_t Strxfrm(char* s1, const char* s2, size_t n)
+size_t my_strxfrm(char* s1, const char* s2, size_t n)
 {
     setlocale(LC_ALL, "");
-    size_t len = Strlen(s2);
+    size_t len = my_strlen(s2);
     size_t num_chars = n > len ? len : n;
     for (size_t i = 0; i < num_chars; ++i)
     {
@@ -176,7 +176,7 @@ size_t Strxfrm(char* s1, const char* s2, size_t n)
     s1[num_chars] = '\0';
     return num_chars;
 }
-char* Strchr(const char* str, int ch)
+char* my_strchr(const char* str, int ch)
 {
     while (*str)
     {
@@ -188,7 +188,7 @@ char* Strchr(const char* str, int ch)
     }
     return (*str == ch) ? (char*)str : NULL;
 }
-char* Strtok(char* str, const char* delim)
+char* my_strtok(char* str, const char* delim)
 {
     static char* ptr = nullptr;
     if (str)
@@ -200,7 +200,7 @@ char* Strtok(char* str, const char* delim)
         return nullptr;
     }
     char* token = ptr;
-    while (*ptr && Strchr(delim, *ptr))
+    while (*ptr && my_strchr(delim, *ptr))
     {
         ptr++;
     }
@@ -210,7 +210,7 @@ char* Strtok(char* str, const char* delim)
         return nullptr;
     }
     token = ptr;
-    while (*ptr && !Strchr(delim, *ptr))
+    while (*ptr && !my_strchr(delim, *ptr))
     {
         ptr++;
     }
@@ -224,7 +224,7 @@ char* Strtok(char* str, const char* delim)
     }
     return token;
 }
-void* Memset(void* s, int c, size_t n)
+void* my_memset(void* s, int c, size_t n)
 {
     unsigned char* p = (unsigned char*)s;
     while (n--)
@@ -233,7 +233,7 @@ void* Memset(void* s, int c, size_t n)
     }
     return s;
 }
-char* Strerror(int errnum)
+char* my_strerror(int errnum)
 {
     size_t i;
     static char unknown_error[32];
